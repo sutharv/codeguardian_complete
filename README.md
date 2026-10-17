@@ -437,7 +437,7 @@ docker-compose down
 
 ## 🤝 Authors
 
-- **Suthar Vishalkumar Jadeshbhai**
+- **Vishal suthar**
 - **Syed Abdullah**
 
 **Course:** Software Engineering Laboratory
