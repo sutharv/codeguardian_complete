@@ -1,0 +1,96 @@
+{
+  "name": "codeguardian-vscode",
+  "displayName": "CodeGuardian",
+  "description": "Policy-Aware Secure Coding Assistant",
+  "version": "1.0.0",
+  "publisher": "codeguardian",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Linters",
+    "Programming Languages"
+  ],
+  "keywords": [
+    "security",
+    "vulnerability",
+    "owasp",
+    "static analysis"
+  ],
+  "activationEvents": [
+    "onLanguage:python",
+    "onLanguage:javascript",
+    "onLanguage:typescript"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "codeguardian.analyzeFile",
+        "title": "CodeGuardian: Analyze Current File"
+      },
+      {
+        "command": "codeguardian.analyzeWorkspace",
+        "title": "CodeGuardian: Analyze Workspace"
+      }
+    ],
+    "configuration": {
+      "title": "CodeGuardian",
+      "properties": {
+        "codeguardian.serverUrl": {
+          "type": "string",
+          "default": "http://localhost:8080",
+          "description": "CodeGuardian API server URL"
+        },
+        "codeguardian.enableRealTimeAnalysis": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable real-time analysis"
+        },
+        "codeguardian.analysisDelay": {
+          "type": "number",
+          "default": 500,
+          "description": "Delay before analysis (ms)"
+        },
+        "codeguardian.severityThreshold": {
+          "type": "string",
+          "enum": [
+            "info",
+            "low",
+            "medium",
+            "high",
+            "critical"
+          ],
+          "default": "low"
+        },
+        "codeguardian.policies": {
+          "type": "array",
+          "default": [
+            "OWASP_TOP_10"
+          ]
+        }
+      }
+    },
+    "keybindings": [
+      {
+        "command": "codeguardian.analyzeFile",
+        "key": "ctrl+shift+g",
+        "mac": "cmd+shift+g"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.26",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "axios": "^1.13.2"
+  }
+}

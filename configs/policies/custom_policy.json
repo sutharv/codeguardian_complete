@@ -1,0 +1,37 @@
+{
+  "name": "Custom Organization Policy",
+  "version": "1.0.0",
+  "description": "Organization-specific security rules",
+  "rules": [
+    {
+      "id": "ORG-001",
+      "name": "Prohibited External API",
+      "description": "Use of unauthorized external APIs is prohibited",
+      "severity": "high",
+      "category": "other",
+      "pattern": "(api\\.prohibited\\.com|untrusted\\.io)",
+      "enabled": true,
+      "tags": ["organization", "api"]
+    },
+    {
+      "id": "ORG-002",
+      "name": "Database Connection String",
+      "description": "Database connection strings must not be hardcoded",
+      "severity": "critical",
+      "category": "hardcoded_secrets",
+      "pattern": "(mongodb|postgresql|mysql)://[^\\s]+@",
+      "enabled": true,
+      "tags": ["organization", "database"]
+    },
+    {
+      "id": "ORG-003",
+      "name": "Logging PII",
+      "description": "Personal data should not be logged",
+      "severity": "high",
+      "category": "other",
+      "pattern": "(log|print).*(?i)(ssn|social.security|credit.card)",
+      "enabled": true,
+      "tags": ["organization", "privacy"]
+    }
+  ]
+}
